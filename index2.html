@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PlanetPath Prototype</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body>
+<header class="topbar">
+<div class="brand">PlanetPath Logistics</div>
+<nav class="nav">
+<button class="tab active" onclick="showPanel(event,'dashboard')">Dashboard</button>
+<button class="tab" onclick="showPanel(event,'vehicles')">Vehicles</button>
+<button class="tab" onclick="showPanel(event,'schedule')">Shipments</button>
+<button class="tab" onclick="showPanel(event,'reports')">Reports</button>
+</nav>
+</header>
+<main class="container">
+
+<!-- Dashboard Panel -->
+<section id="dashboard" class="panel">
+<div class="panel-left">
+<div class="card">
+<h2>Live Vehicle Map</h2>
+<div id="map" style="height:420px;"></div>
+</div>
+</div>
+<div class="panel-right">
+<div class="card">
+<h2>Fleet Status</h2>
+<div id="fleet-stats">Loading...</div>
+</div>
+</div>
+</section>
+
+<!-- Vehicles Panel -->
+<section id="vehicles" class="panel hidden">
+<div class="card">
+<h2>Manage Vehicles</h2>
+<form id="vehicleForm">
+<div class="form-row">
+<label>Vehicle Type
+<select id="vehicleType" required>
+<option value="">-- Select Type --</option>
+<option value="Van">Van</option>
+<option value="Truck">Truck</option>
+<option value="Motorbike">Motorbike</option>
+</select>
+</label>
+</div>
+<div class="form-row">
+<label>License Plate
+<input id="vehiclePlate" placeholder="e.g. J-12345" required maxlength="20">
+</label>
+</div>
+<div class="form-row">
+<label>Latitude
+<input id="vehicleLat" placeholder="31.9539" required>
+</label>
+<label>Longitude
+<input id="vehicleLng" placeholder="35.9106" required>
+</label>
+</div>
+<div class="form-row form-actions">
+<button type="submit" class="btn primary">Add Vehicle</button>
+</div>
+</form>
+<hr>
+<h3>Current Vehicles</h3>
+<table id="vehicleTable" class="table">
+<thead><tr><th>ID</th><th>Type</th><th>Plate</th><th>Location</th><th>Action</th></tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</section>
+
+<!-- Shipments Panel -->
+<section id="schedule" class="panel hidden">
+<div class="card">
+<h2>Schedule Shipment</h2>
+<form id="shipmentForm">
+<div class="form-row">
+<label>Vehicle
+<select id="shipmentVehicle" required></select>
+</label>
+</div>
+<div class="form-row">
+<label>Destination Address
+<input id="destination" placeholder="Amman City Center" required>
+</label>
+</div>
+<div class="form-row">
+<label>Pickup Time
+<input id="pickupTime" type="datetime-local" required>
+</label>
+</div>
+<div class="form-row form-actions">
+<button type="submit" class="btn primary">Schedule</button>
+</div>
+</form>
+</div>
+</section>
+
+<!-- Reports Panel -->
+<section id="reports" class="panel hidden">
+<div class="card">
+<h2>Reports</h2>
+<p id="totalVehicles">Total vehicles: 0</p>
+<p id="totalTrips">Total trips: 0</p>
+<h4>Recent Trips</h4>
+<ul id="recentTrips"></ul>
+</div>
+</section>
+
+</main>
+<footer class="footer">
+Prototype - PlanetPath Logistics · CloudJo Technologies
+</footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="script.js"></script>
+<script>
+// Tabs
+function showPanel(event, id){
+    document.querySelectorAll('.panel').forEach(p=>p.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+    document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+    event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
