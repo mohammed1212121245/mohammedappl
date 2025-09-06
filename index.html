@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PlanetPath Prototype</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body>
+<header class="topbar">
+<div class="brand">PlanetPath Logistics</div>
+<nav class="nav">
+<button class="tab active">Dashboard</button>
+<button class="tab">Vehicles</button>
+<button class="tab">Shipments</button>
+<button class="tab">Reports</button>
+</nav>
+</header>
+<main class="container">
+<section id="dashboard" class="panel">
+<div class="panel-left">
+<div class="card">
+<h2>Live Vehicle Map</h2>
+<div id="map" style="height:420px;"></div>
+</div>
+</div>
+<div class="panel-right">
+<div class="card">
+<h2>Fleet Status</h2>
+<div id="fleet-stats">Loading...</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="footer">
+Prototype - PlanetPath Logistics · CloudJo Technologies
+</footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
